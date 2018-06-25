@@ -46,3 +46,17 @@ you should see request (61A) and reply (483) on the CAN bus:
 ```
 
 Second byte in second reply (483) contains charging current limit 8Amps. I have marked it with underscores.
+
+## Setting charing current limit
+
+To set charing limit to 8Amps:
+```
+cansend can0 512#00001FFF00740000
+```
+
+5th byte (0x74 in above example) is charging current limit. Conversion formula:
+```
+32 - (0xa4 - 0x74)/2 = 8 Amps
+```
+
+Note: limit can't be set lower than 8 Amps
